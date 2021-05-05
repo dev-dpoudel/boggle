@@ -3,7 +3,7 @@ import requests
 
 
 class TestBoggle(unittest.TestCase):
-
+    
     baseurl = "http://localhost:8000/{}"
 
     def test_board(self):
@@ -18,7 +18,6 @@ class TestBoggle(unittest.TestCase):
         url = self.baseurl.format("list")
         response = requests.get(url)
         data = response.json()
-        print(response.text)
         words = data["words"]
         # Test the size of the Board. It must be 4 * 4
         self.assertEquals(len(words), 0, "No words found")
