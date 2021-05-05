@@ -46,7 +46,7 @@ class WordProvider(Resource):
         return {'words': session.get("dictionary", [])}
 
 
-class GameProvider(Resource):
+class ResultsProvider(Resource):
     """Provides Game Functions."""
 
     def get(self):
@@ -65,7 +65,10 @@ class GameProvider(Resource):
         results["TotalGameCount"] = total
         return {"results": results}, 200
 
-    def put(self):
+
+class GameProvider(Resource):
+    """Provides Game Functions."""
+    def get(self):
         """Validate input word against the dictionary
 
         Parameters
@@ -97,5 +100,6 @@ class GameProvider(Resource):
 
 
 boggle.add_resource(BoardProvider, '/keys')
-boggle.add_resource(GameProvider, '/results', '/valid')
+boggle.add_resource(GameProvider, '/valid')
+boggle.add_resource(ResultsProvider, '/results')
 boggle.add_resource(WordProvider, '/list')

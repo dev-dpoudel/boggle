@@ -2,7 +2,7 @@ class BoggleGame {
   /* make a new game at this DOM id */
 
   constructor(boardId, secs = 60) {
-    this.secs = 10; // game length
+    this.secs = secs; // game length
     this.showTimer();
 
     this.score = 0;
@@ -51,7 +51,7 @@ class BoggleGame {
     }
 
     // check server for validity
-    const resp = await axios.put("/valid?", { word: word });
+    const resp = await axios.get("/valid?", {params:{ word: word }});
     if (resp.data.success === false) {
       this.showMessage(`Message :  ${resp.data.message}`, "err");
     }else {
