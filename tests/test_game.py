@@ -6,7 +6,7 @@ class TestBoggle(unittest.TestCase):
 
     baseurl = "http://localhost:8000/{}"
 
-    headers = {'cookie': 'session=.eJxNj7EKwzAMRP_Fc76gmwgBbQILaouSIa2XLA2khVJK_73SOUOHk4V9ejp_0nVb9pZOl2RpSOQa_86zq7rUlV3FxS5x2fE2wT8Pqa2357rdl_0dOOEYKhxWyYBRVCVDjd4oYGPGDQcoU0wxPCPFSpYJBEJv8CAqmCqIRxVTiJIVtPBnI_TS0bVDFTzF_thAykga3oIsPBVYkeuI11eDRNZDCqw1_v7a9vbwb8_fH62oTdk.YJH2-A.qu5BaGdRLezjtQLV6j2po9IqHVU'}
+    headers = {'cookie': 'session=.eJxNj7EKwzAMRP_Fc76gmwgBbQILaouSIa2XLA2khVJK_73SOUOHk4V9ejp_0nVb9pZOl2RpSOQa_86zq7rUlV3FxS5x2fE2wT8Pqa2357rdl_0dOOEYKhxWyYBRVCVDjd4oYGPGDQcoU0wxPCPFSpYJBEJv8CAqmCqIRxVTiJIVtPBnI_TS0bVDFTzF_thAykga3oIsPBVYkeuI11eDRNZDCqw1_v7a9vbwb8_fH62oTdk.YJH2-A.qu5BaGdRLezjtQLV6j2po9IqHVU'}  # noqa E501
 
     def test_board(self):
         url = self.baseurl.format("keys")
