@@ -73,8 +73,8 @@ class GameProvider(Resource):
 
         """
         word = request.args["word"]
-        dictionary = session["dictionary"]
-        words = session["words"]
+        dictionary = session.get("dictionary", [])
+        words = session.get("words", [])
         success = False
         message = None
         if word in dictionary:
