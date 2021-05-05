@@ -1,8 +1,11 @@
-from flask import Blueprint, session, request
+from flask import Blueprint, session, request, Response, render_template
 from flask_restful import Resource, Api
 from .board import BoardGenerator
 
-boggle_bp = Blueprint('board', __name__)
+boggle_bp = Blueprint('board',
+                      __name__,
+                      static_folder='static',
+                      template_folder='templates')
 boggle = Api(boggle_bp)
 
 
@@ -18,10 +21,14 @@ class BoardProvider(Resource):
             Returns the lattice points fro the board.
 
         """
+        layout = []
         generator = BoardGenerator()
-        session["board"] = generator.board
+        board = generator.board
+        layout = [board[i:i+4] for i in range(0, len(board), 4)]
+        session["board"] = board
         session["dictionary"] = generator.dictionary
         session["words"] = []
+        return Response(response=render_template('index.html', board=layout))
         return {'keys': generator.board}
 
 
@@ -76,12 +83,13 @@ class GameProvider(Resource):
         dictionary = session.get("dictionary", [])
         words = session.get("words", [])
         success = False
-        message = None
+        message = "Word not Valid"
         if word in dictionary:
             if word in words:
                 message = "Word already selected"
             else:
                 success = True
+                message = None
                 words.append(word)
                 session["words"] = words
 
