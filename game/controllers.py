@@ -43,7 +43,7 @@ class WordProvider(Resource):
             List of Correct words.
 
         """
-        return {'words': session.get("dictionary", [])}
+        return {'words': session.get("board", [])}
 
 
 class ResultsProvider(Resource):
@@ -99,7 +99,7 @@ class GameProvider(Resource):
         return {"success": success, "message": message, "words": words}
 
 
-boggle.add_resource(BoardProvider, '/keys')
+boggle.add_resource(BoardProvider, '/')
 boggle.add_resource(GameProvider, '/valid')
 boggle.add_resource(ResultsProvider, '/results')
 boggle.add_resource(WordProvider, '/list')
