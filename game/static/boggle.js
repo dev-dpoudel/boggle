@@ -45,10 +45,6 @@ class BoggleGame {
     let word = $word.val();
     if (!word) return;
 
-    if (this.words.has(word)) {
-      this.showMessage(`Already found ${word}`, "err");
-      return;
-    }
 
     // check server for validity
     const resp = await axios.get("/valid?", {params:{ word: word }});
