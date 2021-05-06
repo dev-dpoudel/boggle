@@ -1,4 +1,4 @@
-from flask import session, url_for
+from flask import session
 from flask_classful import FlaskView
 from .board import BoardGenerator
 
@@ -66,11 +66,13 @@ class BoardView(FlaskView):
             Json structure with information regarding marked words.
 
         """
+        # Initialize local variables
         success = False
         message = None
-
+        # Get Session Data
         dictionary = session.get("dictionary", [])
         words = session.get("words", [])
+
         if word in dictionary:
             if word in words:
                 message = "Word already selected"
@@ -80,14 +82,3 @@ class BoardView(FlaskView):
                 session["words"] = words
 
         return {"success": success, "message": message, "words": words}
-
-    def resource(self):
-        """Indexing route for the application.
-
-        Returns
-        -------
-        JSON
-            Description of Available resources.
-
-        """
-        return {"index": url_for("/index")}

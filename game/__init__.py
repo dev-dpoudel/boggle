@@ -15,8 +15,4 @@ def create_app(mode_config=None):
     CORS(app)
     BoardView.register(app)
 
-    with app.app_context():
-        # Register Blueprints
-        pass
-
-        return app
+    return app
